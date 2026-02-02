@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int main() {
+    int StudentScores[10] = {15,17,20,10,14,12,11,13,19,16};
+    int StudentLowestScore = StudentScores[0];
+    int StudentHighestScore = StudentScores[0];
+    float StudentSumScore;
+    float StudentAverageScore;
+    
+    for(int i = 0; i < 10; i++){
+        StudentSumScore += StudentScores[i];
+        StudentAverageScore = StudentSumScore/10;
+        
+        printf("Student %d: %d\n", i+1, StudentScores[i]);
+        
+        if(StudentScores[i] <= StudentLowestScore){
+        StudentLowestScore = StudentScores[i];
+        }
+        
+        if(StudentScores[i] >= StudentHighestScore){
+        StudentHighestScore = StudentScores[i];
+    }
+    
+    }
+    
+    printf("\nLowest Score: %d\n", StudentLowestScore);
+    printf("Highest Score: %d\n", StudentHighestScore);
+    printf("Average Score: %.2f", StudentAverageScore);
+    
+    return 0;
+}
