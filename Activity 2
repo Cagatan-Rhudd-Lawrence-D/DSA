@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+int main() {
+    int GradesOfStudentsInSubjects[5][4] = {
+        {}, {}, {}, {}, {},
+    };
+    for (int t = 0; t < 5; t++) {
+        for (int u = 0; u < 4; u++) {
+            printf("Input Student %d's Grade in Subject %d: ", (t+1), (u+1));
+            scanf("%d", &GradesOfStudentsInSubjects[t][u]);
+        }
+        printf("\n");
+    }
+    float AveragePerStudent = 0;
+    float AveragePerSubject = 0;
+    int Grades = 0;
+    printf("\n=========== STUDENT GRADE AND AVERAGE ===========\n");
+    printf("Student | Sub1 | Sub2 | Sub3 | Sub4 | Avg Grade\n");
+    printf("-------------------------------------------------\n");
+    for (int t = 0; t < 5; t++) {
+        Grades = 0;
+        printf("Student %d |", t + 1);
+        for (int u = 0; u < 4; u++) {
+            printf("%4d |", GradesOfStudentsInSubjects[t][u]);
+            Grades += GradesOfStudentsInSubjects[t][u];
+        }
+        AveragePerStudent = Grades / 4.0;
+        printf("%10.2f |\n", AveragePerStudent);
+    }
+    printf("-------------------------------------------------\n");
+    printf("Average |");
+    for (int c = 0; c < 4; c++) {
+        Grades = 0;
+        for (int r = 0; r < 5; r++) {
+            Grades += GradesOfStudentsInSubjects[r][c];
+        }
+        AveragePerSubject = Grades / 5.0;
+        printf(" %4.2f |", AveragePerSubject);
+    }
+    printf("\n");
+    return 0;
+}
