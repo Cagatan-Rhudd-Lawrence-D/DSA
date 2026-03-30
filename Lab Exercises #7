@@ -1,0 +1,81 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX_QUEUE 100
+
+int printerQueue[MAX_QUEUE];
+int front = -1;
+int rear = -1;
+
+void displayQueue() {
+    printf("Current Printer Queue:\n");
+    
+    if (front == -1 || front > rear) {
+        printf("[ EMPTY ]\n");
+    } else {
+        for (int i = front; i <= rear; i++) {
+            printf("[ %d pages ] ", printerQueue[i]);
+        }
+        printf("\n");
+    }
+}
+
+void requestToPrint(int pages) {
+    if (rear == MAX_QUEUE - 1) {
+        printf("Printer queue is full!\n");
+    } else {
+        if (front == -1) {
+            front = 0;
+        }
+        rear++;
+        printerQueue[rear] = pages;
+        printf("Print request added: %d pages\n", pages);
+    }
+}
+
+void performPrinting() {
+    if (front == -1 || front > rear) {
+        printf("Queue is empty! Nothing to print.\n");
+    } else {
+        printf("Printing %d pages...\n", printerQueue[front]);
+        front++;
+        if (front > rear) {
+            front = -1;
+            rear = -1;
+        }
+    }
+}
+
+int main() {
+    int choice;
+    int pages;
+
+    while (1) {
+        displayQueue();
+        
+        printf("\n--- Printer Queue Menu ---\n");
+        printf("1. Request to Print\n");
+        printf("2. Perform Printing\n");
+        printf("3. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                printf("Enter number of pages: ");
+                scanf("%d", &pages);
+                requestToPrint(pages);
+                break;
+            case 2:
+                performPrinting();
+                break;
+            case 3:
+                return 0;
+            default:
+                printf("Invalid choice! Please try again.\n");
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
